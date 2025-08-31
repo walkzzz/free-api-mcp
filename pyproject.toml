@@ -1,0 +1,28 @@
+[project]
+name = "free-api-mcp"
+version = "0.1.0"
+description = "一个轻量级的免费API服务框架，支持多种大模型API接入"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.13.1",
+    "pinyin>=0.4.0",
+    "requests>=2.31.0",
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+]
+authors = [
+    {name = "walkzzz", email = "745244185@qq.com"}
+]
+keywords = ["api", "mcp", "free", "llm", "framework"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+]
+[project.urls]
+Homepage = "https://github.com/yourusername/free-api-mcp"
+Repository = "https://github.com/yourusername/free-api-mcp.git"
+Documentation = "https://github.com/yourusername/free-api-mcp#readme"
