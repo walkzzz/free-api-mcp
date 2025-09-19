@@ -9,6 +9,17 @@
 ✅ **完善的容错机制** - 多层备用策略确保服务稳定性  
 ✅ **实时数据** - 所有API服务提供最新的实时数据
 
+### 🚀 立即可用的功能
+| 服务类型 | 状态 | 功能描述 |
+|---------|------|----------|
+| 💱 汇率转换 | ✅ 完全正常 | 20+种货币实时汇率转换 |
+| 🪙 加密货币 | ✅ 完全正常 | 比特币、以太坊等实时价格 |
+| 🌍 IP查询 | ✅ 完全正常 | IP归属地、安全检查、详细信息 |
+| 😄 娱乐内容 | ✅ 完全正常 | 英文笑话 + 中文备用库 |
+| 💡 励志名言 | ✅ 完全正常 | 英文名言 + 中文备用库 |
+| 🌤️ 天气查询 | ✅ 完全正常 | 全球城市实时天气信息 |
+| 📰 新闻服务 | ✅ 完全正常 | 16个国家新闻热点 |
+
 ## ✨ 功能特性
 
 ### 🌍 IP信息查询
@@ -74,8 +85,30 @@ cd free-api-mcp
 # 安装依赖
 uv sync
 
-# 启动服务
+# 测试所有服务 (可选)
+uv run python -c "
+from src.main import health_check
+print('服务状态检查:')
+print(health_check())
+"
+
+# 启动MCP服务器
 uv run python -m src.main
+```
+
+### 🎯 一分钟测试
+```bash
+# 测试汇率转换
+uv run python -c "from src.main import query_exchange_rate; print(query_exchange_rate('USD', 'CNY', 100))"
+
+# 测试加密货币价格
+uv run python -c "from src.main import query_crypto_price; print(query_crypto_price('bitcoin', 'usd'))"
+
+# 测试天气查询
+uv run python -c "from src.main import get_weather; print(get_weather('北京'))"
+
+# 测试新闻服务
+uv run python -c "from src.main import get_news_by_country; print(get_news_by_country('us', 2))"
 ```
 
 ### 环境变量配置 (可选)
@@ -265,6 +298,26 @@ MIT License - 详见 LICENSE 文件
 - JokeAPI
 - ExchangeRate-API
 
+## 📝 更新日志
+
+### v1.0.0 (2025-09-20)
+- 🎉 **重大里程碑**: 所有7个核心服务完全正常工作
+- ✅ **汇率服务修复**: 修复API响应格式解析问题
+- ✅ **健康检查优化**: 修复URL参数替换问题
+- ✅ **加密货币服务**: 完善参数格式，支持实时价格查询
+- 🆕 **新增功能**: `get_news_by_country` 支持16个国家新闻
+- ✅ **天气服务**: 确认API密钥有效，支持全球城市查询
+- 🔧 **容错机制**: 完善多层备用策略和本地备用内容
+- 📊 **15个MCP工具**: 全部注册成功并通过测试
+
+### 技术改进
+- 修复ExchangeRate-API响应格式兼容性
+- 优化健康检查中的端点参数处理
+- 完善错误处理和日志记录
+- 增强服务稳定性和可靠性
+
 ---
 
 **Free API MCP Server** - 让API服务更简单、更可靠！ 🎉
+
+> 🌟 **现在就开始使用**: 所有功能开箱即用，无需额外配置！
