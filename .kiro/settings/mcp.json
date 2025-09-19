@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "free-api-mcp": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "D:\\workspace\\kiro\\free-api-mcp",
+        "python",
+        "-m",
+        "src.main"
+      ]
+    }
+  }
+}

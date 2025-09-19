@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "free-api-mcp-global": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "src.main"],
+      "env": {
+        "PYTHONPATH": "/path/to/your/free-api-mcp",
+        "LOG_LEVEL": "WARNING",
+        "ENABLE_LOGGING": "true",
+        "NEWS_API_KEY": "your_news_api_key_here",
+        "WEATHER_API_KEY": "your_weather_api_key_here",
+        "DEFAULT_TIMEOUT": "10",
+        "MAX_RETRIES": "3"
+      }
+    }
+  }
+}
