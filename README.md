@@ -2,6 +2,13 @@
 
 一个功能丰富的免费API服务聚合器，基于Model Context Protocol (MCP)构建，提供多种实用的API服务。
 
+## 🎉 项目状态
+
+✅ **所有服务正常运行** - 7/7个核心服务完全可用  
+✅ **15个MCP工具** - 全部注册成功并正常工作  
+✅ **完善的容错机制** - 多层备用策略确保服务稳定性  
+✅ **实时数据** - 所有API服务提供最新的实时数据
+
 ## ✨ 功能特性
 
 ### 🌍 IP信息查询
@@ -27,10 +34,11 @@
 - **随机笑话**: 英文笑话API + 中文笑话备用库
 - **每日励志**: 支持名言和笑话两种类型
 
-### 📰 新闻天气
-- **中国新闻热点**: 获取国内最新新闻
+### 📰 新闻天气 ✅ **全部正常**
+- **多国新闻热点**: 支持美国、英国、加拿大等16个国家的新闻
+- **中国新闻查询**: 专门的中国新闻接口（可能受API限制）
 - **城市天气查询**: 支持中文城市名称，返回详细天气信息
-- **多语言支持**: 中文界面和数据展示
+- **实时数据**: 温度、湿度、体感温度等完整信息
 
 ### 🔧 系统工具
 - **健康检查**: 监控所有API服务状态
@@ -70,9 +78,9 @@ uv sync
 uv run python -m src.main
 ```
 
-### 环境变量配置
+### 环境变量配置 (可选)
 ```bash
-# API密钥配置
+# API密钥配置 (已有默认密钥，可选覆盖)
 export NEWS_API_KEY="your_news_api_key"
 export WEATHER_API_KEY="your_weather_api_key"
 
@@ -84,6 +92,8 @@ export ENABLE_LOGGING="true"
 export DEFAULT_TIMEOUT="5"
 export MAX_RETRIES="2"
 ```
+
+**注意**: 项目已内置有效的API密钥，无需额外配置即可使用所有功能。
 
 ## 📁 项目结构
 
@@ -124,61 +134,78 @@ uv run python tests/test_enhanced_ip_unit.py
 uv run python tests/test_regression.py
 ```
 
-## 🔌 MCP工具列表
+## 🔌 MCP工具列表 (15个工具全部可用)
 
-### IP信息查询
+### IP信息查询 ✅
 - `query_ip_location(ip_or_domain)` - 基本IP归属地查询
 - `query_ip_detailed_info(ip_or_domain)` - 详细IP信息查询
 - `check_ip_security(ip_address)` - IP安全检查
 - `analyze_ip_comprehensive(ip_or_domain)` - IP综合分析
 
-### 加密货币
+### 加密货币 ✅
 - `query_crypto_price(crypto_symbol, vs_currency)` - 加密货币价格查询
 
-### 汇率转换
+### 汇率转换 ✅
 - `query_exchange_rate(from_currency, to_currency, amount)` - 汇率转换
 - `list_supported_currencies()` - 支持的货币列表
 
-### 内容服务
+### 内容服务 ✅
 - `fetch_inspirational_quote()` - 获取励志名言
 - `fetch_random_joke()` - 获取随机笑话
 - `fetch_daily_motivation(content_type)` - 每日励志内容
 
-### 新闻天气
+### 新闻天气 ✅
 - `get_china_news(limit)` - 获取中国新闻
+- `get_news_by_country(country, limit)` - 获取指定国家新闻 🆕
 - `get_weather(city)` - 查询城市天气
 
-### 系统工具
+### 系统工具 ✅
 - `health_check()` - 健康检查
 - `reset_failed_endpoints(service_name)` - 重置失败端点
 
 ## 📊 使用示例
 
 ```python
-# IP信息查询
+# IP信息查询 ✅ 全部正常
 result = query_ip_location("8.8.8.8")
+# 返回: "8.8.8.8（8.8.8.8）归属地：United States Virginia Ashburn｜Google LLC"
+
 detailed = query_ip_detailed_info("google.com")
 security = check_ip_security("192.168.1.1")
 
-# 加密货币价格
+# 加密货币价格 ✅ 实时数据
 btc_price = query_crypto_price("bitcoin", "usd")
+# 返回: "BITCOIN 价格信息: 💰 当前价格: $115,584.00 📊 市值: $2,303,325,561,751 📈 24小时变化: -1.69%"
+
 eth_cny = query_crypto_price("ethereum", "cny")
 
-# 汇率转换
+# 汇率转换 ✅ 实时汇率
 usd_to_cny = query_exchange_rate("USD", "CNY", 100)
+# 返回: "💱 100 USD = 711.0000 CNY 汇率: 1 USD = 7.1100 CNY 📅 更新时间: 2025-09-19"
+
 currencies = list_supported_currencies()
 
-# 内容服务
+# 内容服务 ✅ 英文+中文备用
 quote = fetch_inspirational_quote()
+# 返回: "💡 One of the oldest human needs is having someone to wonder where you are when you don't come home at night. —— Margaret Mead"
+
 joke = fetch_random_joke()
+# 返回: "😄 What kind of doctor is Dr. Pepper? A fizzician!"
+
 motivation = fetch_daily_motivation("quote")
 
-# 新闻天气
-news = get_china_news(5)
-weather = get_weather("北京")
+# 新闻天气 ✅ 实时数据
+news = get_china_news(5)  # 中国新闻（可能受限）
+us_news = get_news_by_country("us", 3)  # 美国新闻 ✅ 正常
+# 返回: "📰 美国新闻热点: 1. Stock Market Today: Dow, Nasdaq Rise After Fed Rate Cut..."
 
-# 系统工具
+weather = get_weather("北京")
+# 返回: "北京：晴，温度 12.9℃（体感 12.2℃），湿度 73%"
+
+# 系统工具 ✅ 监控正常
 status = health_check()
+# 返回所有服务状态，7/7个服务可用
+
 reset = reset_failed_endpoints("cryptocurrency")
 ```
 

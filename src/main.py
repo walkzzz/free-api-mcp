@@ -104,6 +104,55 @@ def get_china_news(limit: int = 5) -> str:
     return fallback_manager.execute_with_fallback(service_config, make_request)
 
 @mcp.tool()
+def get_news_by_country(country: str = "us", limit: int = 5) -> str:
+    """获取指定国家的新闻热点"""
+    service_config = config_manager.get_service_config("news")
+    api_key = service_config.api_key or config_manager.get("news_api_key")
+    
+    # 支持的国家代码
+    supported_countries = {
+        'us': '美国', 'gb': '英国', 'ca': '加拿大', 'au': '澳大利亚',
+        'de': '德国', 'fr': '法国', 'jp': '日本', 'kr': '韩国',
+        'in': '印度', 'br': '巴西', 'mx': '墨西哥', 'it': '意大利',
+        'cn': '中国', 'ru': '俄罗斯', 'za': '南非', 'eg': '埃及'
+    }
+    
+    country = country.lower().strip()
+    if country not in supported_countries:
+        return f"❌ 不支持的国家代码: {country}\n\n支持的国家: {', '.join([f'{k}({v})' for k, v in supported_countries.items()])}"
+    
+    def make_request(endpoint: str) -> str:
+        try:
+            params = {
+                'country': country,
+                'apiKey': api_key,
+                'pageSize': min(limit, 20)
+            }
+            
+            response = http_manager.get(endpoint, params=params, timeout=service_config.timeout)
+            data = response.json()
+            
+            if data.get('status') == 'ok':
+                articles = data.get('articles', [])
+                if articles:
+                    news_list = []
+                    for i, article in enumerate(articles, 1):
+                        title = article.get('title', '无标题')
+                        source = article.get('source', {}).get('name', '未知来源')
+                        news_list.append(f"{i}. {title}（{source}）")
+                    return f"📰 {supported_countries[country]}新闻热点:\n\n" + '\n'.join(news_list)
+                else:
+                    return f"📰 {supported_countries[country]}暂无新闻数据，可能是API限制或地区限制"
+            else:
+                raise ValueError(f"API返回错误: {data.get('message', '未知错误')}")
+                
+        except Exception as e:
+            error_msg = handle_api_error(e, "新闻获取", endpoint)
+            raise Exception(error_msg)
+    
+    return fallback_manager.execute_with_fallback(service_config, make_request)
+
+@mcp.tool()
 def get_weather(city: str) -> str:
     """查询城市天气"""
     service_config = config_manager.get_service_config("weather")
