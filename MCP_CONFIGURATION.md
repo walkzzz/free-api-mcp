@@ -2,7 +2,7 @@
 
 ## 概述
 
-Free API MCP Server 支持通过 Model Context Protocol (MCP) 与各种AI助手集成。本文档提供了详细的配置指南。
+Free API MCP Server 提供25个MCP工具，支持通过 Model Context Protocol (MCP) 与各种AI助手集成。本文档提供了详细的配置指南。
 
 ## 配置文件位置
 

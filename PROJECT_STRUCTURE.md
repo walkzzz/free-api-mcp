@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-Free API MCP Server 是一个基于 Model Context Protocol (MCP) 的免费API服务聚合器，提供多种实用的API服务，包括IP信息查询、加密货币价格、汇率转换、励志内容等。
+Free API MCP Server 是一个基于 Model Context Protocol (MCP) 的免费API服务聚合器，提供25个实用的MCP工具，涵盖IP信息查询、加密货币价格、汇率转换、励志内容、娱乐服务、实用工具等多个领域。
 
 ## 目录结构
 
@@ -20,10 +20,12 @@ free-api-mcp/
 │   │   └── http_client.py        # HTTP客户端管理
 │   └── services/                 # API服务模块
 │       ├── __init__.py
-│       ├── ip_service.py         # IP信息查询服务
-│       ├── crypto_service.py     # 加密货币价格服务
-│       ├── content_service.py    # 内容服务（名言/笑话）
-│       └── exchange_service.py   # 汇率查询服务
+│       ├── ip_service.py         # IP信息查询服务（4个工具）
+│       ├── crypto_service.py     # 加密货币价格服务（1个工具）
+│       ├── content_service.py    # 内容服务（3个工具：名言/笑话）
+│       ├── exchange_service.py   # 汇率查询服务（2个工具）
+│       ├── entertainment_service.py  # 🆕 娱乐服务（5个工具）
+│       └── utility_service.py    # 🆕 实用工具服务（5个工具）
 ├── tests/                        # 测试文件
 │   ├── __init__.py
 │   ├── test_*.py                 # 各种测试文件
@@ -73,6 +75,20 @@ free-api-mcp/
   - 实时汇率查询
   - 本地备用汇率机制
 
+- **entertainment_service.py**: 🆕 娱乐服务
+  - 随机猫咪图片（高质量，包含尺寸信息）
+  - 随机狗狗图片（自动品种识别）
+  - 有趣事实（英文API + 中文备用库）
+  - 随机表情包（热门梗图）
+  - 历史上的今天（重要历史事件）
+
+- **utility_service.py**: 🆕 实用工具服务
+  - 二维码生成（支持自定义尺寸）
+  - 短链接生成（多平台支持）
+  - 随机密码生成（强度评估）
+  - UUID生成（多版本支持）
+  - 颜色分析（完整色彩信息）
+
 ## 主要功能
 
 ### 1. IP信息查询
@@ -103,7 +119,21 @@ free-api-mcp/
 - 城市天气查询
 - 多语言支持
 
-### 6. 系统工具
+### 6. 娱乐服务 🆕
+- 随机猫咪图片
+- 随机狗狗图片
+- 有趣事实和冷知识
+- 随机表情包
+- 历史上的今天
+
+### 7. 实用工具 🆕
+- 二维码生成
+- 短链接生成
+- 随机密码生成
+- UUID生成
+- 颜色信息分析
+
+### 8. 系统工具
 - 健康检查
 - 失败端点重置
 - 服务状态监控

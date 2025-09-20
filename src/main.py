@@ -22,6 +22,14 @@ try:
         get_inspirational_quote, get_random_joke, get_daily_motivation
     )
     from .services.exchange_service import get_exchange_rate, get_supported_currencies
+    from .services.entertainment_service import (
+        get_random_cat_image, get_random_dog_image, get_random_fact, 
+        get_meme_image, get_today_in_history
+    )
+    from .services.utility_service import (
+        generate_qr_code, shorten_url, generate_password, 
+        generate_uuid, get_color_info
+    )
 except ImportError:
     # 回退到绝对导入（当直接导入时）
     from src.core.config import config_manager
@@ -38,6 +46,14 @@ except ImportError:
         get_inspirational_quote, get_random_joke, get_daily_motivation
     )
     from src.services.exchange_service import get_exchange_rate, get_supported_currencies
+    from src.services.entertainment_service import (
+        get_random_cat_image, get_random_dog_image, get_random_fact, 
+        get_meme_image, get_today_in_history
+    )
+    from src.services.utility_service import (
+        generate_qr_code, shorten_url, generate_password, 
+        generate_uuid, get_color_info
+    )
 
 # 初始化MCP服务器
 mcp = FastMCP("free-api-server")
@@ -238,7 +254,8 @@ def health_check() -> str:
     if not config_manager.get("enable_health_check", True):
         return "健康检查已禁用"
     
-    services = ["ip_location", "news", "weather", "cryptocurrency", "quotes", "jokes", "exchange_rate"]
+    services = ["ip_location", "news", "weather", "cryptocurrency", "quotes", "jokes", "exchange_rate", 
+                "cat_images", "dog_images", "random_facts", "meme_images", "history_today", "color_info"]
     results = []
     
     for service_name in services:
@@ -286,6 +303,62 @@ def reset_failed_endpoints(service_name: str = "") -> str:
     else:
         fallback_manager.reset_failed_endpoints()
         return "已重置所有失败端点"
+
+# ----------------------------------------------------------
+# 娱乐服务
+# ----------------------------------------------------------
+@mcp.tool()
+def fetch_random_cat_image() -> str:
+    """获取随机猫咪图片"""
+    return get_random_cat_image()
+
+@mcp.tool()
+def fetch_random_dog_image() -> str:
+    """获取随机狗狗图片"""
+    return get_random_dog_image()
+
+@mcp.tool()
+def fetch_random_fact() -> str:
+    """获取随机有趣事实"""
+    return get_random_fact()
+
+@mcp.tool()
+def fetch_meme_image() -> str:
+    """获取随机表情包"""
+    return get_meme_image()
+
+@mcp.tool()
+def fetch_today_in_history() -> str:
+    """获取历史上的今天"""
+    return get_today_in_history()
+
+# ----------------------------------------------------------
+# 实用工具服务
+# ----------------------------------------------------------
+@mcp.tool()
+def create_qr_code(text: str, size: str = "200x200") -> str:
+    """生成二维码"""
+    return generate_qr_code(text, size)
+
+@mcp.tool()
+def create_short_url(long_url: str) -> str:
+    """生成短链接"""
+    return shorten_url(long_url)
+
+@mcp.tool()
+def create_random_password(length: int = 12, include_symbols: bool = True) -> str:
+    """生成随机密码"""
+    return generate_password(length, include_symbols)
+
+@mcp.tool()
+def create_uuid(version: int = 4) -> str:
+    """生成UUID"""
+    return generate_uuid(version)
+
+@mcp.tool()
+def analyze_color(color_input: str) -> str:
+    """获取颜色信息"""
+    return get_color_info(color_input)
 
 def initialize_server():
     """初始化服务器"""

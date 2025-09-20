@@ -151,6 +151,46 @@ class ConfigManager:
                     "https://api.weatherapi.com/v1/current.json"
                 ],
                 api_key=self.get("weather_api_key")
+            ),
+            # 娱乐服务
+            "cat_images": ServiceConfig(
+                name="cat_images",
+                primary_endpoint="https://api.thecatapi.com/v1/images/search",
+                fallback_endpoints=[
+                    "https://cataas.com/cat"
+                ]
+            ),
+            "dog_images": ServiceConfig(
+                name="dog_images",
+                primary_endpoint="https://dog.ceo/api/breeds/image/random",
+                fallback_endpoints=[
+                    "https://api.thedogapi.com/v1/images/search"
+                ]
+            ),
+            "random_facts": ServiceConfig(
+                name="random_facts",
+                primary_endpoint="https://uselessfacts.jsph.pl/api/v2/facts/random",
+                fallback_endpoints=[
+                    "https://api.api-ninjas.com/v1/facts"
+                ]
+            ),
+            "meme_images": ServiceConfig(
+                name="meme_images",
+                primary_endpoint="https://meme-api.com/gimme",
+                fallback_endpoints=[
+                    "https://www.reddit.com/r/memes/random.json"
+                ]
+            ),
+            "history_today": ServiceConfig(
+                name="history_today",
+                primary_endpoint="https://history.muffinlabs.com/date",
+                fallback_endpoints=[]
+            ),
+            # 实用工具服务
+            "color_info": ServiceConfig(
+                name="color_info",
+                primary_endpoint="https://www.thecolorapi.com/id",
+                fallback_endpoints=[]
             )
         }
         

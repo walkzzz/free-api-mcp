@@ -4,21 +4,21 @@
 
 ## 🎉 项目状态
 
-✅ **所有服务正常运行** - 7/7个核心服务完全可用  
-✅ **15个MCP工具** - 全部注册成功并正常工作  
+✅ **功能大幅扩展** - 从15个工具扩展到25个工具 (+67%增长)  
+✅ **25个MCP工具** - 涵盖娱乐、实用、金融、新闻等多个领域  
 ✅ **完善的容错机制** - 多层备用策略确保服务稳定性  
 ✅ **实时数据** - 所有API服务提供最新的实时数据
 
 ### 🚀 立即可用的功能
-| 服务类型 | 状态 | 功能描述 |
-|---------|------|----------|
-| 💱 汇率转换 | ✅ 完全正常 | 20+种货币实时汇率转换 |
-| 🪙 加密货币 | ✅ 完全正常 | 比特币、以太坊等实时价格 |
-| 🌍 IP查询 | ✅ 完全正常 | IP归属地、安全检查、详细信息 |
-| 😄 娱乐内容 | ✅ 完全正常 | 英文笑话 + 中文备用库 |
-| 💡 励志名言 | ✅ 完全正常 | 英文名言 + 中文备用库 |
-| 🌤️ 天气查询 | ✅ 完全正常 | 全球城市实时天气信息 |
-| 📰 新闻服务 | ✅ 完全正常 | 16个国家新闻热点 |
+| 服务类型 | 工具数量 | 状态 | 功能描述 |
+|---------|----------|------|----------|
+| 💱 金融服务 | 3个 | ✅ 完全正常 | 汇率转换、加密货币价格、货币列表 |
+| 🌍 IP查询 | 4个 | ✅ 完全正常 | IP归属地、安全检查、详细信息、综合分析 |
+| 📰 新闻天气 | 3个 | ✅ 完全正常 | 多国新闻、天气查询、中国新闻 |
+| 💡 内容服务 | 3个 | ✅ 完全正常 | 励志名言、笑话、每日励志 |
+| 🎮 娱乐服务 | 5个 | 🆕 新增 | 猫狗图片、表情包、有趣事实、历史事件 |
+| 🔧 实用工具 | 5个 | 🆕 新增 | 二维码、短链接、密码生成、UUID、颜色分析 |
+| 🛠️ 系统工具 | 2个 | ✅ 完全正常 | 健康检查、端点重置 |
 
 ## ✨ 功能特性
 
@@ -44,6 +44,20 @@
 - **励志名言**: 英文名言API + 中文名言备用库
 - **随机笑话**: 英文笑话API + 中文笑话备用库
 - **每日励志**: 支持名言和笑话两种类型
+
+### 🎮 娱乐服务 🆕 **新增**
+- **随机猫咪图片**: 高质量猫咪图片，包含尺寸信息
+- **随机狗狗图片**: 狗狗图片，自动识别品种信息
+- **有趣事实**: 英文冷知识 + 中文事实备用库
+- **随机表情包**: 热门表情包和梗图
+- **历史上的今天**: 重要历史事件回顾
+
+### 🔧 实用工具 🆕 **新增**
+- **二维码生成**: 文本转二维码，支持自定义尺寸
+- **短链接生成**: 长URL转短链接服务
+- **随机密码生成**: 安全密码生成，强度评估
+- **UUID生成**: 唯一标识符生成，支持多版本
+- **颜色分析**: 十六进制颜色信息分析
 
 ### 📰 新闻天气 ✅ **全部正常**
 - **多国新闻热点**: 支持美国、英国、加拿大等16个国家的新闻
@@ -143,7 +157,9 @@ free-api-mcp/
 │       ├── ip_service.py         # IP信息服务
 │       ├── crypto_service.py     # 加密货币服务
 │       ├── content_service.py    # 内容服务
-│       └── exchange_service.py   # 汇率服务
+│       ├── exchange_service.py   # 汇率服务
+│       ├── entertainment_service.py  # 🆕 娱乐服务
+│       └── utility_service.py    # 🆕 实用工具服务
 ├── tests/                        # 测试文件
 ├── .kiro/specs/                  # 功能规格文档
 ├── pyproject.toml                # 项目配置
@@ -167,7 +183,7 @@ uv run python tests/test_enhanced_ip_unit.py
 uv run python tests/test_regression.py
 ```
 
-## 🔌 MCP工具列表 (15个工具全部可用)
+## 🔌 MCP工具列表 (25个工具全部可用)
 
 ### IP信息查询 ✅
 - `query_ip_location(ip_or_domain)` - 基本IP归属地查询
@@ -189,8 +205,22 @@ uv run python tests/test_regression.py
 
 ### 新闻天气 ✅
 - `get_china_news(limit)` - 获取中国新闻
-- `get_news_by_country(country, limit)` - 获取指定国家新闻 🆕
+- `get_news_by_country(country, limit)` - 获取指定国家新闻
 - `get_weather(city)` - 查询城市天气
+
+### 娱乐服务 🆕 **新增**
+- `fetch_random_cat_image()` - 获取随机猫咪图片
+- `fetch_random_dog_image()` - 获取随机狗狗图片
+- `fetch_random_fact()` - 获取有趣事实
+- `fetch_meme_image()` - 获取随机表情包
+- `fetch_today_in_history()` - 获取历史上的今天
+
+### 实用工具 🆕 **新增**
+- `create_qr_code(text, size)` - 生成二维码
+- `create_short_url(long_url)` - 生成短链接
+- `create_random_password(length, include_symbols)` - 生成随机密码
+- `create_uuid(version)` - 生成UUID
+- `analyze_color(color_input)` - 分析颜色信息
 
 ### 系统工具 ✅
 - `health_check()` - 健康检查
@@ -235,9 +265,32 @@ us_news = get_news_by_country("us", 3)  # 美国新闻 ✅ 正常
 weather = get_weather("北京")
 # 返回: "北京：晴，温度 12.9℃（体感 12.2℃），湿度 73%"
 
+# 娱乐服务 🆕 新增功能
+cat_image = fetch_random_cat_image()
+# 返回: "🐱 随机猫咪图片: 🖼️ 图片链接: https://cdn2.thecatapi.com/images/au1.jpg 📏 尺寸: 800x1124px"
+
+dog_image = fetch_random_dog_image()
+# 返回: "🐶 随机狗狗图片: 🖼️ 图片链接: https://images.dog.ceo/breeds/airedale/n02096051_1854.jpg 🐕 品种: Airedale"
+
+history = fetch_today_in_history()
+# 返回: "📅 历史上的今天: 1. 1969年: Apollo 11 lands on the moon..."
+
+# 实用工具 🆕 新增功能
+qr_code = create_qr_code("https://github.com/walkzzz/free-api-mcp", "200x200")
+# 返回: "📱 二维码生成成功: 🖼️ 二维码链接: https://api.qrserver.com/v1/create-qr-code/..."
+
+password = create_random_password(16, True)
+# 返回: "🔐 随机密码生成: 🔑 密码: *_(sxb2x$M,wU<CD 💪 强度: 很强"
+
+uuid_id = create_uuid(4)
+# 返回: "🆔 UUID生成成功: 🔢 UUID: 82c3be47-ff63-4471-848a-94c930bb8c38"
+
+color_info = analyze_color("FF5733")
+# 返回: "🎨 颜色信息: 🏷️ 颜色名称: Outrageous Orange 🔢 十六进制: #FF5733"
+
 # 系统工具 ✅ 监控正常
 status = health_check()
-# 返回所有服务状态，7/7个服务可用
+# 返回所有服务状态，13个服务监控
 
 reset = reset_failed_endpoints("cryptocurrency")
 ```
@@ -300,6 +353,14 @@ MIT License - 详见 LICENSE 文件
 
 ## 📝 更新日志
 
+### v2.0.0 (2025-09-20) 🎉 **重大功能扩展**
+- 🚀 **功能大幅扩展**: 从15个工具扩展到25个工具 (+67%增长)
+- 🆕 **娱乐服务**: 新增5个娱乐类工具（猫狗图片、表情包、历史事件、有趣事实）
+- 🆕 **实用工具**: 新增5个实用工具（二维码、短链接、密码生成、UUID、颜色分析）
+- 📊 **25个MCP工具**: 涵盖娱乐、实用、金融、新闻等多个领域
+- 🏗️ **架构扩展**: 新增2个服务模块，保持统一的容错机制
+- ✅ **全面测试**: 所有新增工具通过功能测试
+
 ### v1.0.0 (2025-09-20)
 - 🎉 **重大里程碑**: 所有7个核心服务完全正常工作
 - ✅ **汇率服务修复**: 修复API响应格式解析问题
@@ -315,9 +376,11 @@ MIT License - 详见 LICENSE 文件
 - 优化健康检查中的端点参数处理
 - 完善错误处理和日志记录
 - 增强服务稳定性和可靠性
+- 新增娱乐和实用工具服务模块
+- 扩展配置管理支持更多API服务
 
 ---
 
 **Free API MCP Server** - 让API服务更简单、更可靠！ 🎉
 
-> 🌟 **现在就开始使用**: 所有功能开箱即用，无需额外配置！
+> 🌟 **现在就开始使用**: 25个工具开箱即用，从实用工具到娱乐内容，一应俱全！
